@@ -1,0 +1,43 @@
+iniciamos el proyecto con 
+
+npx create-next-app nextjs-prisma-crud
+
+PARA CREAR EL PROYECTO DE NEXT SE TUVO LO SIGUIENTE EN CONSIDERACION
+usamos typescript, ESLint, tailwind, la carpeta src, App Router 
+(la carpeta "app" , este enrutador creo que es propio de la version 13 de nextjs )
+
+se pone NO en la personalizacion del import alias , es decir la forma en la cual podemos importar globalmente modulos
+
+PRISMA
+una vez tenemos creado nuestro proyecto, instalamos prisma con npm install prisma -D
+esto nos permitira instalar el modulo de prisma, que no es para conectarnos a una base de datos
+sino que es para configurar el ORM
+ahora usamos el comando npx prisma init, hay que recordar si usamos este comando, con init asi sin nada mas
+se va a configurar por defecto una configuracion para prisma con postgresql
+pero si usamos npx prisma init --datasource-provider sqlite , le estamos diciendo que configure prisma con sqlite
+para ese proyecto, se crea un archivo .env con la direccion de la base de datos
+
+- una vez tenemos agregado algunas cosas en nuestro schema de prisma, hacemos una migracion 
+para transformar nuestor codigo a una tabla sql para que podamos añadir a la base de datos
+
+--
+API
+creamos una carpeta llamada api para poder crear la api rest
+primero creamos una llamada notes para este proyecto, lo que significa que cuando se realice una peticion
+a la ruta /notes devolveremos un json de acuerdo al metodo con el que se realiza la peticion
+
+tenemos la estructura api/notes
+
+si bien al tener notes en plural, el get dentro del route que esta dentro del notes, deberia principalmente
+interactuar con muchas notas o todas las notas, para que podamos interactuar con solo una nota, debemos crear un 
+subdirectorio, pudiendo pasar el id por ejemplo o un parametro que identifique a una nota, 
+esto se realiza creando un subdirectorio en el cual su nombre tiene que estar entre parentesis, esto quiere decir,
+que despues de /notes viene un valor dinamico, que no sera fijo, en este caso seria el id
+ejemplo: api/notes/4 
+con esto podemos tener y realizar como asi tambien definir todos los metodos para cierta ruta con la peticion 
+que querramos hacer.
+
+PRISMA QUERIES
+conectando la api rest con nuestra base de datos, porque tenemos rutas en el backend pero no estamos interactuando
+con la base de datos
+
